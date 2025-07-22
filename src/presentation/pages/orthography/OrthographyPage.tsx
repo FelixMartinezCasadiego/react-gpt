@@ -1,4 +1,4 @@
-import { GptMessage, MyMessage } from "../../components";
+import { GptMessage, MyMessage, TypingLoader } from "../../components";
 
 export function OrthographyPage() {
   return (
@@ -11,6 +11,8 @@ export function OrthographyPage() {
           <div className="col-span-12">
             <MyMessage text="Hola Mundo" />
           </div>
+
+          <TypingLoader className="fade-in" />
         </div>
       </div>
     </div>
