@@ -1,8 +1,13 @@
-import { GptMessage, MyMessage, TypingLoader } from "../../components";
+import {
+  GptMessage,
+  MyMessage,
+  TextMessageBox,
+  TypingLoader,
+} from "../../components";
 
 export function OrthographyPage() {
   return (
-    <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-white bg-white/5 h-full p-4">
+    <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-white/5 h-full p-4">
       <div className="flex flex-col h-full overflow-y-auto mb-4">
         <div className="grid grid-cols-12 gap-y-2">
           <div className="col-span-12">
@@ -15,6 +20,12 @@ export function OrthographyPage() {
           <TypingLoader className="fade-in" />
         </div>
       </div>
+
+      <TextMessageBox
+        onSendMessage={(message) => console.log(message)}
+        placeholder="Escribe aquí lo que deseas"
+        disabledCorrection={true}
+      />
     </div>
   );
 }
