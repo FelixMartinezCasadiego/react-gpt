@@ -4,14 +4,14 @@ import {
   MyMessage,
   TextMessageBox,
   TypingLoader,
-} from "../../components";
+} from "../components";
 
 interface Message {
   text: string;
   isGpt: boolean;
 }
 
-export function OrthographyPage() {
+export function ChatTemplate() {
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
 
