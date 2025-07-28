@@ -50,8 +50,6 @@ export function OrthographyPage() {
     }
 
     setIsLoading(false);
-
-    // TODO: add the message from isGPT in true
   };
 
   return (
