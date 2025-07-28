@@ -23,7 +23,7 @@ export const orthographyUseCase = async (prompt: string) => {
     return {
       ok: false,
       userScore: 0,
-      erros: [],
+      errors: [],
       message: "No se pudo realizar la correción",
     };
   }
