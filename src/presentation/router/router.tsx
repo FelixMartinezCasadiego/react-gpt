@@ -7,7 +7,7 @@ import {
   ImageGenerationPage,
   ImageTunningPage,
   OrthographyPage,
-  ProsConsPage,
+  ProsConstPage,
   ProsConsStreamPage,
   TextToAudioPage,
   TranslatePage,
@@ -29,7 +29,7 @@ export const menuRoutes = [
     icon: "fa-solid fa-code-compare",
     title: "Pros & Cons",
     description: "Comparar pros y contras",
-    component: <ProsConsPage />,
+    component: <ProsConstPage />,
   },
   {
     to: "/pros-cons-stream",
