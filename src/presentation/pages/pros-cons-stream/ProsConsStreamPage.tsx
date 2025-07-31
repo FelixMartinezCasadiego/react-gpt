@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 /* Components */
 import {
@@ -17,15 +17,27 @@ interface Message {
 }
 
 export function ProsConsStreamPage() {
+  const abortController = useRef(new AbortController());
+  const isRunning = useRef(false);
+
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
 
   const hanlderPost = async (text: string) => {
+    if (isRunning.current) {
+      abortController.current.abort();
+      abortController.current = new AbortController();
+    }
+
     setIsLoading(true);
+    isRunning.current = true;
 
     setMessages((prev) => [...prev, { text: text, isGpt: false }]);
 
-    const stream = await prosConsStreamGeneratorUseCase(text);
+    const stream = prosConsStreamGeneratorUseCase(
+      text,
+      abortController.current.signal
+    );
     setIsLoading(false);
 
     setMessages((messages) => [...messages, { text: "", isGpt: true }]);
@@ -37,6 +49,8 @@ export function ProsConsStreamPage() {
         return newMessages;
       });
     }
+
+    isRunning.current = false;
   };
 
   return (
