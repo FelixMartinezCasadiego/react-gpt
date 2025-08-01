@@ -6,6 +6,7 @@ import {
   TypingLoader,
   TextMessageBoxSelect,
 } from "../../components";
+import { translateTextUseCase } from "../../../core/use-cases";
 
 interface Message {
   text: string;
@@ -32,14 +33,15 @@ export function TranslatePage() {
   const hanlderPost = async (text: string, selectedOption: string) => {
     setIsLoading(true);
 
-    const newMessage = `Traduce ${text} al idioma ${selectedOption}`;
+    const newMessage = `Traduce "${text}" al idioma ${selectedOption}`;
 
     setMessages((prev) => [...prev, { text: newMessage, isGpt: false }]);
 
-    // TODO: useCase
+    const { message } = await translateTextUseCase(text, selectedOption);
+
     setIsLoading(false);
 
-    // TODO: add the message from isGPT in true
+    setMessages((prev) => [...prev, { text: message, isGpt: true }]);
   };
 
   return (
