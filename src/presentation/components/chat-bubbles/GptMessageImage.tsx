@@ -1,9 +1,10 @@
 interface Props {
   imageUrl: string;
   alt: string;
+  onImageSelected?: (imageUrl: string) => void;
 }
 
-export function GptMessageImage({ alt, imageUrl }: Props) {
+export function GptMessageImage({ alt, imageUrl, onImageSelected }: Props) {
   return (
     <div className="col-start-1 col-end-9 p-3 rounded-lg">
       <div className="flex flex-row items-start">
@@ -15,6 +16,7 @@ export function GptMessageImage({ alt, imageUrl }: Props) {
             src={imageUrl}
             alt={alt}
             className="mt-2 rounded-xl w-96 object-cover"
+            onClick={() => onImageSelected && onImageSelected(imageUrl)}
           />
         </div>
       </div>
